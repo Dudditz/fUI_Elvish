@@ -188,17 +188,33 @@ function S:DamageMeter_HandleStatusBar()
 	local StatusBar = self.StatusBar
 	if not StatusBar then return end
 
+	StatusBar:GetStatusBarTexture():SetTexture(E.media.normTex)
+
 	if StatusBar.Background then
+		local bg = StatusBar.Background
+
 		local r, g, b, a = unpack(E.media.backdropfadecolor)
-		StatusBar.Background:SetTexture(E.media.blankTex)
-		StatusBar.Background:SetVertexColor(r, g, b, a)
+		bg:SetTexture(E.media.blankTex)
+		bg:SetVertexColor(r, g, b, a)
+		bg:ClearAllPoints()
+		bg:SetPoint("TOPLEFT", StatusBar, "TOPLEFT", -1, 1)
+		bg:SetPoint("BOTTOMRIGHT", StatusBar, "BOTTOMRIGHT", 1, -1)
 	end
 
 	if StatusBar.BackgroundEdge then
 		StatusBar.BackgroundEdge:Hide()
 	end
+	
+	local name = self:GetName()
+	local fontFile, height, flags = name:GetFont()
+			name:SetFont(fontFile, height, "OUTLINE")
+			name:SetShadowOffset(1, -1)
+			
+	local value = self:GetValue()
+	local fontFile, height, flags = value:GetFont()
+			value:SetFont(fontFile, height, "OUTLINE")
+			value:SetShadowOffset(1, -1)
 
-	StatusBar:GetStatusBarTexture():SetTexture(E.media.normTex)
 end
 
 function S:DamageMeter_ScrollBoxUpdate()

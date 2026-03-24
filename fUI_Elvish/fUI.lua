@@ -56,10 +56,3 @@ local function ColorRest()
 end	
 
 hooksecurefunc(DB, 'ExperienceBar_Update', ColorRest)
-
-
-
-
-    
-	
-	
