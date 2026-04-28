@@ -78,7 +78,7 @@ end
 
 local function OnEnter(panel)
     DT.tooltip:ClearLines()
-    DT.tooltip:SetOwner(panel, "ANCHOR_TOP")
+    --DT.tooltip:SetOwner(panel, "ANCHOR_TOP")
 
     local printedAny = false
     local found = false

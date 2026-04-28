@@ -124,6 +124,8 @@ function S:DamageMeter_HandleTypeDropdown(window, dropdown)
 	dropdown.IsSkinned = true
 end
 
+
+
 function S:DamageMeter_HandleSessionDropdown(window, dropdown)
 	if not dropdown or dropdown.IsSkinned then return end
 
@@ -155,7 +157,7 @@ function S:DamageMeter_HandleSettingsDropdown(window, dropdown)
 	S:HandleButton(dropdown, nil, nil, nil, true, 'Default')
 
 	dropdown:Size(20)
-	dropdown:NudgePoint(15, -2)
+	dropdown:NudgePoint(45, -2)
 
 	if dropdown.Icon then
 		dropdown.Icon:SetAlpha(0)
@@ -171,6 +173,20 @@ function S:DamageMeter_HandleSettingsDropdown(window, dropdown)
 	end
 
 	dropdown.IsSkinned = true
+end
+
+function S:DamageMeter_HandleMinimizeButton(button)
+	if not button or button.IsSkinned then return end
+	
+	-----------------------------------------------------------
+	---- We dont need this button with the meter data text ----
+	-----------------------------------------------------------
+	
+	button:Hide()
+	button:HookScript("OnShow", button.Hide)
+	button.Show = E.noop
+	
+	button.IsSkinned = true
 end
 
 function S:DamageMeter_HandleHeader(window, header)
@@ -296,6 +312,7 @@ function S:DamageMeter_HandleSessionWindow()
 	S:DamageMeter_HandleSessionTimer(self, self.SessionTimer)
 	S:DamageMeter_HandleScrollBoxes(self)
 	S.DamageMeter_RepositionResizeButton(self)
+	S:DamageMeter_HandleMinimizeButton(self.MinimizeButton)
 
 	self.IsSkinned = true
 end
