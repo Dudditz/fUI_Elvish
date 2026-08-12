@@ -86,9 +86,9 @@ function S:DamageMeter_HandleSessionTimer(window, sessionTimer)
 
 	sessionTimer:NudgePoint(-15)
 	local fontFile, height, flags = sessionTimer:GetFont()
-			sessionTimer:SetFont(fontFile, height, "OUTLINE")
+			sessionTimer:SetFont(fontFile, height, "OUTLINE, SLUG")
 			--Do I Like (0, 0) or (1, -1) ??
-			sessionTimer:SetShadowOffset(1, -1)
+			--sessionTimer:SetShadowOffset(1, -1)
 end
 
 function S:DamageMeter_HandleTypeDropdown(window, dropdown)
@@ -97,7 +97,7 @@ function S:DamageMeter_HandleTypeDropdown(window, dropdown)
 	S:HandleButton(dropdown, nil, nil, nil, true, 'Default')
 
 	dropdown:Size(20)
-	dropdown:NudgePoint(nil, -2)
+	dropdown:NudgePoint(nil, -5)
 
 	local customArrow = not dropdown.customArrow and dropdown:CreateTexture(nil, 'BACKGROUND')
 	if customArrow then
@@ -116,9 +116,9 @@ function S:DamageMeter_HandleTypeDropdown(window, dropdown)
 	if dropdown.TypeName then
 		dropdown.TypeName:NudgePoint(-4, -1)
 		local fontFile, height, flags = dropdown.TypeName:GetFont()
-			dropdown.TypeName:SetFont(fontFile, height, "OUTLINE")
+			dropdown.TypeName:SetFont(fontFile, height, "OUTLINE, SLUG")
 			--Do I Like (0, 0) or (1, -1) ??
-			dropdown.TypeName:SetShadowOffset(1, -1)
+			--dropdown.TypeName:SetShadowOffset(1, -1)
 	end
 
 	dropdown.IsSkinned = true
@@ -223,13 +223,13 @@ function S:DamageMeter_HandleStatusBar()
 	
 	local name = self:GetName()
 	local fontFile, height, flags = name:GetFont()
-			name:SetFont(fontFile, height, "OUTLINE")
-			name:SetShadowOffset(1, -1)
+			name:SetFont(fontFile, height, "OUTLINE, SLUG")
+			--name:SetShadowOffset(1, -1)
 			
 	local value = self:GetValue()
 	local fontFile, height, flags = value:GetFont()
-			value:SetFont(fontFile, height, "OUTLINE")
-			value:SetShadowOffset(1, -1)
+			value:SetFont(fontFile, height, "OUTLINE, SLUG")
+			--value:SetShadowOffset(1, -1)
 
 end
 
