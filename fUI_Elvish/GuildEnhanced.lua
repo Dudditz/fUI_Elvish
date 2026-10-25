@@ -16,7 +16,7 @@ local InCombatLockdown = InCombatLockdown
 local IsAltKeyDown = IsAltKeyDown
 local IsInGuild = IsInGuild
 local IsShiftKeyDown = IsShiftKeyDown
-local MouseIsOver = MouseIsOver
+--local MouseIsOver = MouseIsOver
 local ToggleGuildFrame = ToggleGuildFrame
 local UnitInParty = UnitInParty
 local UnitInRaid = UnitInRaid
@@ -193,7 +193,7 @@ local eventHandlers = {
 			BuildGuildTable()
 			UpdateGuildMessage()
 
-			if MouseIsOver(frame) then
+			if frame:IsMouseOver() then
 				frame:GetScript('OnEnter')(frame, nil, true)
 			end
 		end
@@ -339,7 +339,7 @@ local function OnEvent(panel, event, ...)
 		local func = eventHandlers[event]
 		if func then func(panel, ...) end
 
-		if not IsAltKeyDown() and event == 'MODIFIER_STATE_CHANGED' and MouseIsOver(panel) then
+		if not IsAltKeyDown() and event == 'MODIFIER_STATE_CHANGED' and panel:IsMouseOver() then
 			OnEnter(panel)
 		end
 
